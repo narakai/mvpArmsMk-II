@@ -1,9 +1,17 @@
 apply plugin: 'com.android.application'
 
+def ext = rootProject.ext
+def version = ext.versions
+def appPackage = ext.appID
+def dependencie = ext.dependencies
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+8"))
+}
+
 android {
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
-    useLibrary 'org.apache.http.legacy'
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -11,12 +19,13 @@ android {
     }
 
     defaultConfig {
-        applicationId "clem.app.musicplayer"
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        applicationId appPackage.app
+        minSdkVersion version.minSdkVersion
+        targetSdkVersion version.targetSdkVersion
+        versionCode version.versionCode
+        versionName version.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -46,13 +55,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //view
-    implementation rootProject.ext.dependencies["constraintLayout"]
     //mvp
     implementation project(':mvp')
-    //test
-    testImplementation rootProject.ext.dependencies["junit"]
-    debugImplementation rootProject.ext.dependencies["canary-debug"]
-    releaseImplementation rootProject.ext.dependencies["canary-release"]
-    testImplementation rootProject.ext.dependencies["canary-release"]
+    //黄油刀
+    implementation dependencie.butterknife
+    annotationProcessor dependencie.butterknife_compiler
 }
