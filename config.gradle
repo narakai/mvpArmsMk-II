@@ -1,7 +1,7 @@
 ext {
     versions = [
             compileSdkVersion        : 27,
-            buildToolsVersion       : "27.0.3",
+            buildToolsVersion        : "27.0.3",
             minSdkVersion            : 15,
             targetSdkVersion         : 27,
             versionCode              : 10,
@@ -30,6 +30,9 @@ ext {
             //dagger
             dagger2                  : '2.15',
             dagger2_compiler         : '2.15',
+
+            //dagger_android
+            dagger_android         : '2.11',
 
             //Glide
             glide                    : '3.7.0',
@@ -110,8 +113,14 @@ ext {
             logger                   : "com.orhanobut:logger:$versions.logger",
 
             //Dagger2
-            dagger2                  : "com.google.dagger:dagger:$versions.dagger2",
-            dagger2_compiler         : "com.google.dagger:dagger-compiler:$versions.dagger2_compiler",
+//            dagger2                  : "com.google.dagger:dagger:$versions.dagger2",
+//            dagger2_compiler         : "com.google.dagger:dagger-compiler:$versions.dagger2_compiler",
+
+            //dagger-android
+            dagger_android           : "com.google.dagger:dagger-android:$versions.dagger_android",
+            dagger_android_support   : "com.google.dagger:dagger-android-support:$versions.dagger_android",
+            dagger_compiler          : "com.google.dagger:dagger-compiler:$versions.dagger_android",
+            dagger_android_processor : "com.google.dagger:dagger-android-processor:$versions.dagger_android",
 
             //Glide 图像处理
             glide                    : "com.github.bumptech.glide:glide:$versions.glide",
@@ -119,7 +128,7 @@ ext {
             banner                   : "com.youth.banner:banner:$versions.banner",
 
             //Rx https://github.com/ReactiveX/RxAndroid https://github.com/ReactiveX/RxJava
-            rxjava                   : "io.reactivex.rxjava2:rxjava:$versions.rxjava",
+            rxjava2                  : "io.reactivex.rxjava2:rxjava:$versions.rxjava",
             rxandroid2               : "io.reactivex.rxjava2:rxandroid:$versions.rxandroid2",
             rxlifecycle_components   : "com.trello.rxlifecycle2:rxlifecycle-components:$versions.rxlifecycle_components",
             rxlifecycle              : "com.trello.rxlifecycle2:rxlifecycle:$versions.rxlifecycle",

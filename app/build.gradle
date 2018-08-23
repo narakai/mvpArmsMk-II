@@ -51,6 +51,10 @@ android {
         disable "ResourceType"
         abortOnError false
     }
+
+    dataBinding {
+        enabled = true;
+    }
 }
 
 dependencies {

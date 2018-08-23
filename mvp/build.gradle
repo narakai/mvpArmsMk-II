@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'com.jakewharton.butterknife'
 
 def ext = rootProject.ext
 def version = ext.versions
@@ -67,7 +67,7 @@ dependencies {
     api dependencie.retrofit2_converter_gson
 
     //Rx https://github.com/ReactiveX/RxAndroid https://github.com/ReactiveX/RxJava
-    api dependencie.rxjava
+    api dependencie.rxjava2
     api dependencie.rxandroid2
     api dependencie.rxlifecycle//处理rxjava内存泄露
     api dependencie.rxlifecycle_components
@@ -86,13 +86,24 @@ dependencies {
 //    api dependencie.arouter_api
 
     //黄油刀
-    implementation dependencie.butterknife
-    annotationProcessor dependencie.butterknife_compiler
+//    implementation dependencie.butterknife
+//    annotationProcessor dependencie.butterknife_compiler
 
     //图片轮播控件
     api dependencie.banner
+
     //图片加载框架
     api dependencie.glide
 
+    //event bus
     api dependencie.eventbus
+
+    //glide
+    api dependencie.glide
+
+    //dagger_android
+    api dependencie.dagger_android
+    api dependencie.dagger_android_support
+    annotationProcessor dependencie.dagger_compiler
+    annotationProcessor dependencie.dagger_android_processor
 }
