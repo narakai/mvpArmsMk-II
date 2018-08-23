@@ -62,6 +62,6 @@ dependencies {
     //mvp
     implementation project(':mvp')
     //黄油刀
-    implementation dependencie.butterknife
-    annotationProcessor dependencie.butterknife_compiler
+//    implementation dependencie.butterknife
+//    annotationProcessor dependencie.butterknife_compiler
 }
