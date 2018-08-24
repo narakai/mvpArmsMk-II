@@ -101,9 +101,13 @@ dependencies {
     //glide
     api dependencie.glide
 
+    //dagger2
+    api dependencie.dagger2
+    annotationProcessor dependencie.dagger2_compiler
+
     //dagger_android
-    api dependencie.dagger_android
-    api dependencie.dagger_android_support
-    annotationProcessor dependencie.dagger_compiler
-    annotationProcessor dependencie.dagger_android_processor
+//    api dependencie.dagger_android
+//    api dependencie.dagger_android_support
+//    annotationProcessor dependencie.dagger_compiler
+//    annotationProcessor dependencie.dagger_android_processor
 }

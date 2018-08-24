@@ -113,8 +113,8 @@ ext {
             logger                   : "com.orhanobut:logger:$versions.logger",
 
             //Dagger2
-//            dagger2                  : "com.google.dagger:dagger:$versions.dagger2",
-//            dagger2_compiler         : "com.google.dagger:dagger-compiler:$versions.dagger2_compiler",
+            dagger2                  : "com.google.dagger:dagger:$versions.dagger2",
+            dagger2_compiler         : "com.google.dagger:dagger-compiler:$versions.dagger2_compiler",
 
             //dagger-android
             dagger_android           : "com.google.dagger:dagger-android:$versions.dagger_android",
