@@ -69,15 +69,18 @@ dependencies {
     //Rx https://github.com/ReactiveX/RxAndroid https://github.com/ReactiveX/RxJava
     api dependencie.rxjava2
     api dependencie.rxandroid2
-    api dependencie.rxlifecycle//处理rxjava内存泄露
-    api dependencie.rxlifecycle_components
+//    api dependencie.rxlifecycle//处理rxjava内存泄露
+//    api dependencie.rxlifecycle_components
     api dependencie.rxpermissions//方便处理6.0运行时动态权限问题
+    api dependencie.rxerrorhandler2
+    api dependencie.auto_dispose
+    api dependencie.auto_dispose_archcomponents
 
     //Gson https://github.com/google/gson
     api dependencie.gson
 
     //Log日志工具 https://github.com/orhanobut/logger
-    api dependencie.logger
+//    api dependencie.logger
 
     //dex解决方法超过65535数量
     api dependencie.multidex
@@ -100,10 +103,15 @@ dependencies {
 
     //glide
     api dependencie.glide
+    annotationProcessor dependencie.glide_compiler
+    api dependencie.glide_loader_okhttp3
 
     //dagger2
     api dependencie.dagger2
     annotationProcessor dependencie.dagger2_compiler
+
+    //timber
+    api dependencie.timber
 
     //dagger_android
 //    api dependencie.dagger_android
