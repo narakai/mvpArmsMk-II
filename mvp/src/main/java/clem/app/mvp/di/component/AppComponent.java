@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package clem.app.mvp.di.component;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
@@ -27,6 +27,7 @@ import javax.inject.Singleton;
 
 import clem.app.mvp.di.module.AppModule;
 import clem.app.mvp.di.module.ClientModule;
+import clem.app.mvp.di.module.GlobalConfigModule;
 import clem.app.mvp.http.imageloader.ImageLoader;
 import dagger.BindsInstance;
 import dagger.Component;
@@ -45,15 +46,15 @@ import okhttp3.OkHttpClient;
  * ================================================
  */
 @Singleton
-@Component(modules = {AppModule.class, ClientModule.class})
+@Component(modules = {AppModule.class, ClientModule.class, GlobalConfigModule.class})
 public interface AppComponent {
     Application application();
 
-//    /**
-//     * 用于管理网络请求层, 以及数据缓存层
-//     *
-//     * @return {@link IRepositoryManager}
-//     */
+    /**
+     * 用于管理网络请求层, 以及数据缓存层
+     *
+     * @return {@link IRepositoryManager}
+     */
 //    IRepositoryManager repositoryManager();
 
     /**
@@ -63,14 +64,14 @@ public interface AppComponent {
      */
     RxErrorHandler rxErrorHandler();
 
-//    /**
-//     * 图片加载管理器, 用于加载图片的管理类, 使用策略者模式, 可在运行时动态替换任何图片加载框架
-//     * arms-imageloader-glide 提供 Glide 的策略实现类, 也可以自行实现
-//     * 需要在 {@link ConfigModule#applyOptions(Context, GlobalConfigModule.Builder)} 中
-//     * 手动注册 {@link BaseImageLoaderStrategy}, {@link ImageLoader} 才能正常使用
-//     *
-//     * @return
-//     */
+    /**
+     * 图片加载管理器, 用于加载图片的管理类, 使用策略者模式, 可在运行时动态替换任何图片加载框架
+     * arms-imageloader-glide 提供 Glide 的策略实现类, 也可以自行实现
+     * 需要在 {@link ConfigModule#applyOptions(Context, GlobalConfigModule.Builder)} 中
+     * 手动注册 {@link BaseImageLoaderStrategy}, {@link ImageLoader} 才能正常使用
+     *
+     * @return
+     */
     ImageLoader imageLoader();
 
     /**
@@ -95,24 +96,13 @@ public interface AppComponent {
      */
     File cacheFile();
 
-//    /**
-//     * 用来存取一些整个 App 公用的数据, 切勿大量存放大容量数据, 这里的存放的数据和 {@link Application} 的生命周期一致
-//     *
-//     * @return {@link Cache}
-//     */
-//    Cache<String, Object> extras();
-//
-//    /**
-//     * 用于创建框架所需缓存对象的工厂
-//     *
-//     * @return {@link Cache.Factory}
-//     */
-//    Cache.Factory cacheFactory();
 
     @Component.Builder
     interface Builder {
         @BindsInstance
         Builder application(Application application);
+
+        Builder globalConfigModule(GlobalConfigModule globalConfigModule);
 
         AppComponent build();
     }

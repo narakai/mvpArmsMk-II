@@ -76,6 +76,10 @@ dependencies {
     api dependencie.auto_dispose
     api dependencie.auto_dispose_archcomponents
 
+    //rxcache
+    api dependencie.rxCache
+    api dependencie.rxCache_Jolyglot
+
     //Gson https://github.com/google/gson
     api dependencie.gson
 

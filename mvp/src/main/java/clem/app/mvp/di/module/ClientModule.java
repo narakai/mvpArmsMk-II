@@ -20,9 +20,6 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
-import com.jess.arms.http.GlobalHttpHandler;
-import com.jess.arms.http.log.RequestInterceptor;
-import com.jess.arms.utils.DataHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +29,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import clem.app.mvp.http.GlobalHttpHandler;
+import clem.app.mvp.http.log.RequestInterceptor;
+import clem.app.mvp.utils.DataHelper;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;

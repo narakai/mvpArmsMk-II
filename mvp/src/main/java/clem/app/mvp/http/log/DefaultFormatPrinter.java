@@ -17,11 +17,9 @@ package clem.app.mvp.http.log;
 
 import android.text.TextUtils;
 
-import com.jess.arms.di.module.GlobalConfigModule;
-import com.jess.arms.utils.CharacterHandler;
-
 import java.util.List;
 
+import clem.app.mvp.utils.CharacterHandler;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import timber.log.Timber;
