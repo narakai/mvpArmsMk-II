@@ -15,7 +15,6 @@
  */
 package clem.app.mvp.di.module;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
@@ -29,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.http.GlobalHttpHandler;
 import clem.app.mvp.http.log.RequestInterceptor;
 import clem.app.mvp.utils.DataHelper;
@@ -73,7 +73,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static Retrofit provideRetrofit(Application application, @Nullable RetrofitConfiguration configuration, Retrofit.Builder builder, OkHttpClient client
+    static Retrofit provideRetrofit(BaseApplication application, @Nullable RetrofitConfiguration configuration, Retrofit.Builder builder, OkHttpClient client
             , HttpUrl httpUrl, Gson gson) {
         builder
                 .baseUrl(httpUrl)//域名
@@ -101,7 +101,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static OkHttpClient provideClient(Application application, @Nullable OkhttpConfiguration configuration, OkHttpClient.Builder builder, Interceptor intercept
+    static OkHttpClient provideClient(BaseApplication application, @Nullable OkhttpConfiguration configuration, OkHttpClient.Builder builder, Interceptor intercept
             , @Nullable List<Interceptor> interceptors, @Nullable GlobalHttpHandler handler) {
         builder
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -152,7 +152,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static RxCache provideRxCache(Application application, @Nullable RxCacheConfiguration configuration
+    static RxCache provideRxCache(BaseApplication application, @Nullable RxCacheConfiguration configuration
             , @Named("RxCacheDirectory") File cacheDirectory, Gson gson) {
         RxCache.Builder builder = new RxCache.Builder();
         RxCache rxCache = null;
@@ -187,7 +187,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static RxErrorHandler proRxErrorHandler(Application application, ResponseErrorListener listener) {
+    static RxErrorHandler proRxErrorHandler(BaseApplication application, ResponseErrorListener listener) {
         return RxErrorHandler
                 .builder()
                 .with(application)

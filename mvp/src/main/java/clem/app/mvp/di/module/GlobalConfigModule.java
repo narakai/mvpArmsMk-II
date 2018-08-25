@@ -15,7 +15,6 @@
  */
 package clem.app.mvp.di.module;
 
-import android.app.Application;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
@@ -27,6 +26,7 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
+import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.http.BaseUrl;
 import clem.app.mvp.http.GlobalHttpHandler;
 import clem.app.mvp.http.imageloader.BaseImageLoaderStrategy;
@@ -143,7 +143,7 @@ public class GlobalConfigModule {
      */
     @Singleton
     @Provides
-    File provideCacheFile(Application application) {
+    File provideCacheFile(BaseApplication application) {
         return mCacheFile == null ? DataHelper.getCacheFile(application) : mCacheFile;
     }
 

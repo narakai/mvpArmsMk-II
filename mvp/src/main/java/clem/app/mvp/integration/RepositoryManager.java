@@ -15,7 +15,6 @@
  */
 package clem.app.mvp.integration;
 
-import android.app.Application;
 import android.content.Context;
 
 import java.util.HashMap;
@@ -24,6 +23,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.utils.Preconditions;
 import dagger.Lazy;
 import io.rx_cache2.internal.RxCache;
@@ -47,7 +47,7 @@ public class RepositoryManager implements IRepositoryManager {
     @Inject
     Lazy<RxCache> mRxCache;
     @Inject
-    Application mApplication;
+    BaseApplication mApplication;
     private Map<String, Object> mRetrofitServiceCache;
     private Map<String, Object> mCacheServiceCache;
 

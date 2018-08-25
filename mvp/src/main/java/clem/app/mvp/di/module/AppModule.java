@@ -15,14 +15,16 @@
  */
 package clem.app.mvp.di.module;
 
-import android.app.Application;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
 
+import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.integration.AppManager;
+import clem.app.mvp.integration.IRepositoryManager;
+import clem.app.mvp.integration.RepositoryManager;
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -38,9 +40,16 @@ import dagger.Provides;
 @Module
 public abstract class AppModule {
 
+    //先来分析一下，需要哪些类是单例的，单例创建的，都和BaseApplication关联起来
     @Singleton
     @Provides
-    static Gson provideGson(Application application) {
+    static BaseApplication provideBaseApplication() {
+        return BaseApplication.getInstance();
+    }
+
+    @Singleton
+    @Provides
+    static Gson provideGson(BaseApplication application) {
         GsonBuilder builder = new GsonBuilder();
         return builder.create();
     }
@@ -55,12 +64,12 @@ public abstract class AppModule {
      */
     @Singleton
     @Provides
-    static AppManager provideAppManager(Application application){
+    static AppManager provideAppManager(BaseApplication application){
         return AppManager.getAppManager().init(application);
     }
 
 //    如果你有提供实例类的方法只调用构造函数注入接口。在dagger中使用@Binds注解可以代替原有的样板模式。
-//    @Binds
-//    abstract IRepositoryManager bindRepositoryManager(RepositoryManager repositoryManager);
+    @Binds
+    abstract IRepositoryManager bindRepositoryManager(RepositoryManager repositoryManager);
 //
 }

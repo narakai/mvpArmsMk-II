@@ -16,7 +16,6 @@
 
 package clem.app.mvp.di.component;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.google.gson.Gson;
@@ -25,11 +24,12 @@ import java.io.File;
 
 import javax.inject.Singleton;
 
+import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.di.module.AppModule;
 import clem.app.mvp.di.module.ClientModule;
 import clem.app.mvp.di.module.GlobalConfigModule;
 import clem.app.mvp.http.imageloader.ImageLoader;
-import dagger.BindsInstance;
+import clem.app.mvp.integration.IRepositoryManager;
 import dagger.Component;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import okhttp3.OkHttpClient;
@@ -48,14 +48,14 @@ import okhttp3.OkHttpClient;
 @Singleton
 @Component(modules = {AppModule.class, ClientModule.class, GlobalConfigModule.class})
 public interface AppComponent {
-    Application application();
+    BaseApplication baseApplication();
 
     /**
      * 用于管理网络请求层, 以及数据缓存层
      *
      * @return {@link IRepositoryManager}
      */
-//    IRepositoryManager repositoryManager();
+    IRepositoryManager repositoryManager();
 
     /**
      * RxJava 错误处理管理类
@@ -96,14 +96,6 @@ public interface AppComponent {
      */
     File cacheFile();
 
+    void inject(BaseApplication application);
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        Builder application(Application application);
-
-        Builder globalConfigModule(GlobalConfigModule globalConfigModule);
-
-        AppComponent build();
-    }
 }

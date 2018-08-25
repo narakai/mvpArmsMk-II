@@ -15,11 +15,6 @@
  */
 package clem.app.mvp.mvp;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.OnLifecycleEvent;
-
 import clem.app.mvp.integration.IRepositoryManager;
 
 /**
@@ -32,7 +27,7 @@ import clem.app.mvp.integration.IRepositoryManager;
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class BaseModel implements IModel, LifecycleObserver {
+public class BaseModel implements IModel{
     protected IRepositoryManager mRepositoryManager;//用于管理网络请求层, 以及数据缓存层
 
     public BaseModel(IRepositoryManager repositoryManager) {
@@ -45,10 +40,5 @@ public class BaseModel implements IModel, LifecycleObserver {
     @Override
     public void onDestroy() {
         mRepositoryManager = null;
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    void onDestroy(LifecycleOwner owner) {
-        owner.getLifecycle().removeObserver(this);
     }
 }
