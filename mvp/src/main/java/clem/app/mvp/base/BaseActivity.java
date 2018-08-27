@@ -1,8 +1,6 @@
 package clem.app.mvp.base;
 
 import android.arch.lifecycle.Lifecycle;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.MainThread;
@@ -15,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import clem.app.mvp.mvp.IPresenter;
 import clem.app.mvp.utils.RxLifecycleUtils;
 
@@ -23,9 +23,8 @@ import clem.app.mvp.utils.RxLifecycleUtils;
  * desc:
  */
 
-public abstract class BaseActivity<P extends IPresenter, B extends ViewDataBinding> extends AppCompatActivity implements IActivity {
-
-    protected B b;
+public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity {
+    private Unbinder mUnbinder;
 
     @Inject
     protected P presenter;
@@ -34,7 +33,7 @@ public abstract class BaseActivity<P extends IPresenter, B extends ViewDataBindi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        b = DataBindingUtil.setContentView(this, getLayoutId());
+        mUnbinder = ButterKnife.bind(this);
         initLifecycleObserver(getLifecycle());
         initView();
         initData();
@@ -56,6 +55,14 @@ public abstract class BaseActivity<P extends IPresenter, B extends ViewDataBindi
     protected abstract void initView();
 
     protected abstract void initData();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY)
+            mUnbinder.unbind();
+        this.mUnbinder = null;
+    }
 
     @MainThread
     @Override

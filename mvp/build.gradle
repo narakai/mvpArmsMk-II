@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'com.jakewharton.butterknife'
 
 def ext = rootProject.ext
 def version = ext.versions
@@ -30,9 +30,9 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-    }
+//    dataBinding {
+//        enabled = true
+//    }
 }
 
 dependencies {
@@ -96,8 +96,8 @@ dependencies {
 //    api dependencie.arouter_api
 
     //黄油刀
-//    implementation dependencie.butterknife
-//    annotationProcessor dependencie.butterknife_compiler
+    implementation dependencie.butterknife
+    annotationProcessor dependencie.butterknife_compiler
 
     //图片轮播控件
     api dependencie.banner

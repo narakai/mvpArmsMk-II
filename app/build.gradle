@@ -51,17 +51,15 @@ android {
         disable "ResourceType"
         abortOnError false
     }
-
-    dataBinding {
-        enabled = true;
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //mvp
     implementation project(':mvp')
+    //dagger2
+    annotationProcessor dependencie.dagger2_compiler
     //黄油刀
-//    implementation dependencie.butterknife
+    implementation dependencie.butterknife
 //    annotationProcessor dependencie.butterknife_compiler
 }

@@ -1,8 +1,6 @@
 package clem.app.mvp.base;
 
 import android.arch.lifecycle.Lifecycle;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.MainThread;
@@ -18,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import clem.app.mvp.mvp.IPresenter;
 import clem.app.mvp.utils.RxLifecycleUtils;
 
@@ -25,11 +25,10 @@ import clem.app.mvp.utils.RxLifecycleUtils;
  * Created by QingMei on 2017/8/14.
  */
 
-public abstract class BaseFragment<P extends IPresenter, B extends ViewDataBinding> extends Fragment implements IFragment {
-
-    protected B b;
+public abstract class BaseFragment<P extends IPresenter> extends Fragment implements IFragment {
 
     protected View rootView;
+    private Unbinder unbinder;
 
     @Inject
     protected P presenter;
@@ -44,10 +43,16 @@ public abstract class BaseFragment<P extends IPresenter, B extends ViewDataBindi
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        b = DataBindingUtil.bind(view);
+        unbinder = ButterKnife.bind(this, view);
         initLifecycleObserver(getLifecycle());
         initView(view);
         initData();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override

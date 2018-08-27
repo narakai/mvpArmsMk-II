@@ -1,27 +1,33 @@
 package clem.app.musicplayer;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import clem.app.musicplayer.databinding.ActivityMainBinding;
+import butterknife.BindView;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //添加布局，ActivityMainBinding命名方式是根据布局文件的命名方式来的
-        ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this,R.layout.activity_main);
-        setSupportActionBar(binding.toolbar);
+        setSupportActionBar(toolbar);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

@@ -1,10 +1,10 @@
-package clem.app.musicplayer.di;
+package clem.app.musicplayer.di.component;
 
 import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
-import clem.app.mvp.base.BaseApplication;
+import clem.app.musicplayer.ModuleApplication;
 import clem.app.mvp.di.module.AppModule;
 import clem.app.mvp.di.module.CacheModule;
 import clem.app.mvp.di.module.ClientModule;
@@ -29,7 +29,7 @@ public interface ModuleAppComponent {
 
     OkHttpClient okHttpClient();
 
-    BaseApplication baseApplication();
+    ModuleApplication moduleApplication();
 
-    void inject(BaseApplication application);
+    void inject(ModuleApplication application);
 }
