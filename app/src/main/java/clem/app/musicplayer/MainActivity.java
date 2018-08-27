@@ -10,21 +10,23 @@ import android.view.MenuItem;
 import android.view.View;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //添加布局，ActivityMainBinding命名方式是根据布局文件的命名方式来的
+        mUnbinder = ButterKnife.bind(this);        //添加布局，ActivityMainBinding命名方式是根据布局文件的命名方式来的
         setSupportActionBar(toolbar);
 
         fab.setOnClickListener(new View.OnClickListener() {

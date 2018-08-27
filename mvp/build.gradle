@@ -114,7 +114,7 @@ dependencies {
     api dependencie.glide_loader_okhttp3
 
     //dagger2
-    api dependencie.dagger2
+    implementation dependencie.dagger2
     annotationProcessor dependencie.dagger2_compiler
 
     //timber

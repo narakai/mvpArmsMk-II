@@ -1,19 +1,18 @@
 package clem.app.musicplayer;
 
 
+import clem.app.musicplayer.di.component.DaggerModuleAppComponent;
 import clem.app.mvp.base.BaseApplication;
-import clem.app.mvp.di.component.DaggerAppComponent;
 
 public class ModuleApplication extends BaseApplication {
 
     @Override
     protected void injectApp() {
-        mAppComponent = DaggerAppComponent.builder()
+        DaggerModuleAppComponent.builder()
                 .globalConfigModule(getGlobalConfigModule())
                 .appModule(getAppModule())
                 .cacheModule(getCacheModule())
                 .clientModule(getClientModule())
-                .build();
-        mAppComponent.inject(this);
+                .build().inject(this);
     }
 }
