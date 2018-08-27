@@ -52,7 +52,7 @@ ext {
 
             //Ok
             okhttp3                  : '3.10.0',
-            okhttp3_logging          : '3.10.0',
+            okhttp3_logging          : '2.0.4',
             okio                     : '1.14.0',
 
             //retrofit2
@@ -161,7 +161,7 @@ ext {
 
             //Ok  https://github.com/square/okhttp
             okhttp3                    : "com.squareup.okhttp3:okhttp:$versions.okhttp3",
-            okhttp3_logging            : "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3_logging",
+            okhttp3_logging            : "com.github.ihsanbal:LoggingInterceptor:$versions.okhttp3_logging",
             okio                       : "com.squareup.okio:okio:$versions.okio",
 
             //retrofit https://github.com/square/retrofit

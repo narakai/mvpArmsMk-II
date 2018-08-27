@@ -26,9 +26,9 @@ import javax.inject.Singleton;
 
 import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.di.module.AppModule;
+import clem.app.mvp.di.module.CacheModule;
 import clem.app.mvp.di.module.ClientModule;
 import clem.app.mvp.di.module.GlobalConfigModule;
-import clem.app.mvp.http.imageloader.ImageLoader;
 import clem.app.mvp.integration.IRepositoryManager;
 import dagger.Component;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
@@ -46,16 +46,16 @@ import okhttp3.OkHttpClient;
  * ================================================
  */
 @Singleton
-@Component(modules = {AppModule.class, ClientModule.class, GlobalConfigModule.class})
+@Component(modules = {AppModule.class, ClientModule.class, GlobalConfigModule.class, CacheModule.class})
 public interface AppComponent {
-    BaseApplication baseApplication();
+//    BaseApplication baseApplication();
 
     /**
      * 用于管理网络请求层, 以及数据缓存层
      *
      * @return {@link IRepositoryManager}
      */
-    IRepositoryManager repositoryManager();
+//    IRepositoryManager repositoryManager();
 
     /**
      * RxJava 错误处理管理类
@@ -72,7 +72,7 @@ public interface AppComponent {
      *
      * @return
      */
-    ImageLoader imageLoader();
+//    ImageLoader imageLoader();
 
     /**
      * 网络请求框架
@@ -94,7 +94,7 @@ public interface AppComponent {
      *
      * @return {@link File}
      */
-    File cacheFile();
+//    File cacheFile();
 
     void inject(BaseApplication application);
 

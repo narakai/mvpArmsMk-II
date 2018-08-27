@@ -44,7 +44,6 @@ public abstract class BaseActivity<P extends IPresenter, B extends ViewDataBindi
         return RxLifecycleUtils.bindLifecycle(this);
     }
 
-    @MainThread
     protected abstract int getLayoutId();
 
     @CallSuper
@@ -54,10 +53,8 @@ public abstract class BaseActivity<P extends IPresenter, B extends ViewDataBindi
         lifecycle.addObserver(presenter);
     }
 
-    @MainThread
     protected abstract void initView();
 
-    @MainThread
     protected abstract void initData();
 
     @MainThread

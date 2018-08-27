@@ -30,9 +30,9 @@ import javax.inject.Singleton;
 
 import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.http.GlobalHttpHandler;
+import clem.app.mvp.http.ResponseErrorListenerImpl;
 import clem.app.mvp.http.log.RequestInterceptor;
 import clem.app.mvp.utils.DataHelper;
-import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import io.rx_cache2.internal.RxCache;
@@ -57,7 +57,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * ================================================
  */
 @Module
-public abstract class ClientModule {
+public class ClientModule {
     private static final int TIME_OUT = 10;
 
     /**
@@ -73,7 +73,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static Retrofit provideRetrofit(BaseApplication application, @Nullable RetrofitConfiguration configuration, Retrofit.Builder builder, OkHttpClient client
+    public Retrofit provideRetrofit(BaseApplication application, @Nullable RetrofitConfiguration configuration, Retrofit.Builder builder, OkHttpClient client
             , HttpUrl httpUrl, Gson gson) {
         builder
                 .baseUrl(httpUrl)//域名
@@ -101,7 +101,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static OkHttpClient provideClient(BaseApplication application, @Nullable OkhttpConfiguration configuration, OkHttpClient.Builder builder, Interceptor intercept
+    public OkHttpClient provideClient(OkHttpClient.Builder builder, Interceptor intercept
             , @Nullable List<Interceptor> interceptors, @Nullable GlobalHttpHandler handler) {
         builder
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -122,25 +122,31 @@ public abstract class ClientModule {
             }
         }
 
-        if (configuration != null)
-            configuration.configOkhttp(application, builder);
+//        if (configuration != null)
+//            configuration.configOkhttp(application, builder);
         return builder.build();
     }
 
     @Singleton
     @Provides
-    static Retrofit.Builder provideRetrofitBuilder() {
+    public Retrofit.Builder provideRetrofitBuilder() {
         return new Retrofit.Builder();
     }
 
     @Singleton
     @Provides
-    static OkHttpClient.Builder provideClientBuilder() {
+    public OkHttpClient.Builder provideClientBuilder() {
         return new OkHttpClient.Builder();
     }
 
-    @Binds
-    abstract Interceptor bindInterceptor(RequestInterceptor interceptor);
+    @Singleton
+    @Provides
+    public Interceptor provideIntercept(RequestInterceptor interceptor) {
+        return interceptor;
+    }
+
+//    @Binds
+//    abstract Interceptor bindInterceptor(RequestInterceptor interceptor);
 
     /**
      * 提供 {@link RxCache}
@@ -152,7 +158,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static RxCache provideRxCache(BaseApplication application, @Nullable RxCacheConfiguration configuration
+    public RxCache provideRxCache(BaseApplication application, @Nullable RxCacheConfiguration configuration
             , @Named("RxCacheDirectory") File cacheDirectory, Gson gson) {
         RxCache.Builder builder = new RxCache.Builder();
         RxCache rxCache = null;
@@ -173,7 +179,7 @@ public abstract class ClientModule {
     @Singleton
     @Provides
     @Named("RxCacheDirectory")
-    static File provideRxCacheDirectory(File cacheDir) {
+    public File provideRxCacheDirectory(File cacheDir) {
         File cacheDirectory = new File(cacheDir, "RxCache");
         return DataHelper.makeDirs(cacheDirectory);
     }
@@ -187,7 +193,7 @@ public abstract class ClientModule {
      */
     @Singleton
     @Provides
-    static RxErrorHandler proRxErrorHandler(BaseApplication application, ResponseErrorListener listener) {
+    public RxErrorHandler proRxErrorHandler(BaseApplication application, ResponseErrorListener listener) {
         return RxErrorHandler
                 .builder()
                 .with(application)
@@ -195,12 +201,13 @@ public abstract class ClientModule {
                 .build();
     }
 
-    public interface RetrofitConfiguration {
-        void configRetrofit(Context context, Retrofit.Builder builder);
+    @Provides
+    public ResponseErrorListener proResponseErrorListener() {
+        return new ResponseErrorListenerImpl();
     }
 
-    public interface OkhttpConfiguration {
-        void configOkhttp(Context context, OkHttpClient.Builder builder);
+    public interface RetrofitConfiguration {
+        void configRetrofit(Context context, Retrofit.Builder builder);
     }
 
     public interface RxCacheConfiguration {
