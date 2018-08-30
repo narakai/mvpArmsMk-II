@@ -96,8 +96,8 @@ dependencies {
 //    api dependencie.arouter_api
 
     //黄油刀
-    implementation dependencie.butterknife
-    annotationProcessor dependencie.butterknife_compiler
+    api dependencie.butterknife
+//    annotationProcessor dependencie.butterknife_compiler
 
     //图片轮播控件
     api dependencie.banner
@@ -106,7 +106,7 @@ dependencies {
     api dependencie.glide
 
     //event bus
-    api dependencie.eventbus
+//    compileOnly dependencie.eventbus
 
     //glide
     api dependencie.glide
@@ -114,7 +114,7 @@ dependencies {
     api dependencie.glide_loader_okhttp3
 
     //dagger2
-    implementation dependencie.dagger2
+    api dependencie.dagger2
     annotationProcessor dependencie.dagger2_compiler
 
     //timber

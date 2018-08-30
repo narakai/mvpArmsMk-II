@@ -58,9 +58,11 @@ dependencies {
     //mvp
     implementation project(':mvp')
     //dagger2
-    implementation dependencie.dagger2
+//    implementation dependencie.dagger2
     annotationProcessor dependencie.dagger2_compiler
     //黄油刀
-    implementation dependencie.butterknife
+//    implementation dependencie.butterknife
     annotationProcessor dependencie.butterknife_compiler
+    //event bus
+    implementation dependencie.eventbus
 }
