@@ -48,7 +48,9 @@ import okhttp3.OkHttpClient;
 @Singleton
 @Component(modules = {AppModule.class, ClientModule.class, GlobalConfigModule.class, CacheModule.class})
 public interface AppComponent {
-//    BaseApplication baseApplication();
+//    标记的依赖公开可见
+
+    BaseApplication baseApplication();
 
     /**
      * 用于管理网络请求层, 以及数据缓存层

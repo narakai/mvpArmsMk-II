@@ -33,11 +33,14 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        setupActivityComponent();
         mUnbinder = ButterKnife.bind(this);
         initLifecycleObserver(getLifecycle());
         initView();
         initData();
     }
+
+    protected abstract void setupActivityComponent();
 
     protected <T> AutoDisposeConverter<T> bindLifecycle() {
         return RxLifecycleUtils.bindLifecycle(this);
