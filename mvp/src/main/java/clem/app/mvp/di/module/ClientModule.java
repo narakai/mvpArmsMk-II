@@ -15,10 +15,7 @@
  */
 package clem.app.mvp.di.module;
 
-import android.content.Context;
 import android.support.annotation.Nullable;
-
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +33,6 @@ import clem.app.mvp.utils.DataHelper;
 import dagger.Module;
 import dagger.Provides;
 import io.rx_cache2.internal.RxCache;
-import io.victoralbertos.jolyglot.GsonSpeaker;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
@@ -60,45 +56,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ClientModule {
     private static final int TIME_OUT = 10;
 
-    /**
-     * 提供 {@link Retrofit}
-     *
-     * @param application
-     * @param configuration
-     * @param builder
-     * @param client
-     * @param httpUrl
-     * @param gson
-     * @return {@link Retrofit}
-     */
     @Singleton
     @Provides
-    public Retrofit provideRetrofit(BaseApplication application, @Nullable RetrofitConfiguration configuration, Retrofit.Builder builder, OkHttpClient client
-            , HttpUrl httpUrl, Gson gson) {
-        builder
-                .baseUrl(httpUrl)//域名
-                .client(client);//设置okhttp
-
-        if (configuration != null)
-            configuration.configRetrofit(application, builder);
-
-        builder
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用 Rxjava
-                .addConverterFactory(GsonConverterFactory.create(gson));//使用 Gson
-        return builder.build();
+    Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client, HttpUrl httpUrl) {
+        return builder
+                .baseUrl(httpUrl)
+                .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
-    /**
-     * 提供 {@link OkHttpClient}
-     *
-     * @param application
-     * @param configuration
-     * @param builder
-     * @param intercept
-     * @param interceptors
-     * @param handler
-     * @return {@link OkHttpClient}
-     */
     @Singleton
     @Provides
     public OkHttpClient provideClient(OkHttpClient.Builder builder, Interceptor intercept
@@ -145,31 +113,6 @@ public class ClientModule {
         return interceptor;
     }
 
-//    @Binds
-//    abstract Interceptor bindInterceptor(RequestInterceptor interceptor);
-
-    /**
-     * 提供 {@link RxCache}
-     *
-     * @param application
-     * @param configuration
-     * @param cacheDirectory cacheDirectory RxCache缓存路径
-     * @return {@link RxCache}
-     */
-    @Singleton
-    @Provides
-    public RxCache provideRxCache(BaseApplication application, @Nullable RxCacheConfiguration configuration
-            , @Named("RxCacheDirectory") File cacheDirectory, Gson gson) {
-        RxCache.Builder builder = new RxCache.Builder();
-        RxCache rxCache = null;
-        if (configuration != null) {
-            rxCache = configuration.configRxCache(application, builder);
-        }
-        if (rxCache != null) return rxCache;
-        return builder
-                .persistence(cacheDirectory, new GsonSpeaker(gson));
-    }
-
     /**
      * 需要单独给 {@link RxCache} 提供缓存路径
      *
@@ -204,21 +147,5 @@ public class ClientModule {
     @Provides
     public ResponseErrorListener proResponseErrorListener() {
         return new ResponseErrorListenerImpl();
-    }
-
-    public interface RetrofitConfiguration {
-        void configRetrofit(Context context, Retrofit.Builder builder);
-    }
-
-    public interface RxCacheConfiguration {
-        /**
-         * 若想自定义 RxCache 的缓存文件夹或者解析方式, 如改成 fastjson
-         * 请 {@code return rxCacheBuilder.persistence(cacheDirectory, new FastJsonSpeaker());}, 否则请 {@code return null;}
-         *
-         * @param context
-         * @param builder
-         * @return {@link RxCache}
-         */
-        RxCache configRxCache(Context context, RxCache.Builder builder);
     }
 }

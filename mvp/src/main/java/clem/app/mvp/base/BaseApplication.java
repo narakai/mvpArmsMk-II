@@ -12,7 +12,6 @@ import com.ihsanbal.logging.LoggingInterceptor;
 
 import clem.app.mvp.BuildConfig;
 import clem.app.mvp.di.component.AppComponent;
-import clem.app.mvp.di.module.AppModule;
 import clem.app.mvp.di.module.CacheModule;
 import clem.app.mvp.di.module.ClientModule;
 import clem.app.mvp.di.module.GlobalConfigModule;
@@ -106,9 +105,6 @@ public abstract class BaseApplication extends MultiDexApplication implements App
         return new ClientModule();
     }
 
-    protected AppModule getAppModule() {
-        return new AppModule();
-    }
 
     protected CacheModule getCacheModule() {
         return new CacheModule(ContextCompat.getExternalCacheDirs(this)[0]);

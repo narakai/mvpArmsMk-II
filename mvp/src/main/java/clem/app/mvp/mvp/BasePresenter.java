@@ -17,10 +17,9 @@ package clem.app.mvp.mvp;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
+import android.support.annotation.NonNull;
 
 import com.uber.autodispose.AutoDisposeConverter;
-
-import org.jetbrains.annotations.NotNull;
 
 import clem.app.mvp.utils.Preconditions;
 import clem.app.mvp.utils.RxLifecycleUtils;
@@ -42,29 +41,12 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     protected V mRootView;
     private LifecycleOwner lifecycleOwner;
 
-    /**
-     * 如果当前页面同时需要 Model 层和 View 层,则使用此构造函数(默认)
-     *
-     * @param model
-     * @param rootView
-     */
     public BasePresenter(M model, V rootView) {
         Preconditions.checkNotNull(model, "%s cannot be null", IModel.class.getName());
         Preconditions.checkNotNull(rootView, "%s cannot be null", IView.class.getName());
+        this.mRootView = rootView;
         this.mModel = model;
-        this.mRootView = rootView;
     }
-
-    /**
-     * 如果当前页面不需要操作数据,只需要 View 层,则使用此构造函数
-     *
-     * @param rootView
-     */
-    public BasePresenter(V rootView) {
-        Preconditions.checkNotNull(rootView, "%s cannot be null", IView.class.getName());
-        this.mRootView = rootView;
-    }
-
 
     protected <T> AutoDisposeConverter<T> bindLifecycle() {
         if (null == lifecycleOwner)
@@ -79,32 +61,32 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     }
 
     @Override
-    public void onCreate(@NotNull LifecycleOwner owner) {
+    public void onCreate(@NonNull LifecycleOwner owner) {
 
     }
 
     @Override
-    public void onStart(@NotNull LifecycleOwner owner) {
+    public void onStart(@NonNull LifecycleOwner owner) {
 
     }
 
     @Override
-    public void onResume(@NotNull LifecycleOwner owner) {
+    public void onResume(@NonNull LifecycleOwner owner) {
 
     }
 
     @Override
-    public void onPause(@NotNull LifecycleOwner owner) {
+    public void onPause(@NonNull LifecycleOwner owner) {
 
     }
 
     @Override
-    public void onStop(@NotNull LifecycleOwner owner) {
+    public void onStop(@NonNull LifecycleOwner owner) {
 
     }
 
     @Override
-    public void onDestroy(@NotNull LifecycleOwner owner) {
+    public void onDestroy(@NonNull LifecycleOwner owner) {
         if (mModel != null)
             mModel.onDestroy();
         this.mModel = null;
@@ -112,7 +94,7 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     }
 
     @Override
-    public void onLifecycleChanged(@NotNull LifecycleOwner owner, Lifecycle.@NotNull Event event) {
+    public void onLifecycleChanged(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
 
     }
 

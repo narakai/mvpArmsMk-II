@@ -15,8 +15,8 @@
  */
 package clem.app.musicplayer.di.component;
 
-import clem.app.musicplayer.MainActivity;
 import clem.app.musicplayer.di.module.UserModule;
+import clem.app.musicplayer.mvp.ui.activity.UserActivity;
 import clem.app.mvp.di.component.AppComponent;
 import clem.app.mvp.di.scope.ActivityScope;
 import dagger.Component;
@@ -33,5 +33,5 @@ import dagger.Component;
 @ActivityScope
 @Component(modules = UserModule.class, dependencies = AppComponent.class)
 public interface UserComponent {
-    void inject(MainActivity activity);
+    void inject(UserActivity activity);
 }

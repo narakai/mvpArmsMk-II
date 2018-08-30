@@ -125,5 +125,4 @@ dependencies {
 //    api dependencie.dagger_android_support
 //    annotationProcessor dependencie.dagger_compiler
 //    annotationProcessor dependencie.dagger_android_processor
-    implementation 'org.jetbrains:annotations:15.0'
 }

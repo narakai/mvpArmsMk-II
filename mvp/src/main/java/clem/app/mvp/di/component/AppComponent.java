@@ -57,7 +57,7 @@ public interface AppComponent {
      *
      * @return {@link IRepositoryManager}
      */
-//    IRepositoryManager repositoryManager();
+    IRepositoryManager repositoryManager();
 
     /**
      * RxJava 错误处理管理类
