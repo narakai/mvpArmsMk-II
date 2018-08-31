@@ -1,7 +1,6 @@
 package clem.app.musicplayer.mvp.ui.activity;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
@@ -10,7 +9,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import clem.app.musicplayer.R;
 import clem.app.musicplayer.di.component.DaggerUserComponent;
 import clem.app.musicplayer.di.module.UserModule;
@@ -64,12 +62,5 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
     @Override
     public RxPermissions getRxPermissions() {
         return mRxPermissions;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

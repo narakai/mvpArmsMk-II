@@ -15,13 +15,7 @@
  */
 package clem.app.mvp.mvp;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-
-import clem.app.mvp.utils.ArmsUtils;
-
-import static clem.app.mvp.utils.Preconditions.checkNotNull;
 
 
 /**
@@ -60,20 +54,4 @@ public interface IView {
      */
     void showMessage(@NonNull String message);
 
-    /**
-     * 跳转 {@link Activity}
-     *
-     * @param intent {@code intent} 不能为 {@code null}
-     */
-    default void launchActivity(@NonNull Intent intent) {
-        checkNotNull(intent);
-        ArmsUtils.startActivity(intent);
-    }
-
-    /**
-     * 杀死自己
-     */
-    default void killMyself() {
-
-    }
 }
