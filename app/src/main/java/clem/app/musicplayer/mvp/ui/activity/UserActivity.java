@@ -10,9 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -20,7 +17,6 @@ import clem.app.musicplayer.R;
 import clem.app.musicplayer.di.component.DaggerUserComponent;
 import clem.app.musicplayer.di.module.UserModule;
 import clem.app.musicplayer.mvp.contract.UserContract;
-import clem.app.musicplayer.mvp.model.entity.User;
 import clem.app.musicplayer.mvp.presenter.UserPresenter;
 import clem.app.mvp.base.BaseActivity;
 import clem.app.mvp.base.BaseApplication;
@@ -32,9 +28,8 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
     RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
-
-    private BaseQuickAdapter mAdapter;
-    private List<User> mUser = new ArrayList<>();
+    @Inject
+    UserAdapter mAdapter;
 
     @Override
     protected void setupActivityComponent() {
@@ -55,7 +50,6 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
     @Override
     protected void initView() {
         initRecyclerView();
-        mAdapter = new UserAdapter(R.layout.recycle_list, mUser);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setEnableLoadMore(true);
         mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {

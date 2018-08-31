@@ -17,6 +17,6 @@ public class UserAdapter extends BaseQuickAdapter<User, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, User item) {
-        helper.setText(R.id.tv_name, item.getId());
+        helper.setText(R.id.tv_name, item.getAvatarUrl());
     }
 }

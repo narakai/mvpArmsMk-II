@@ -17,8 +17,14 @@ package clem.app.musicplayer.di.module;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import clem.app.musicplayer.R;
 import clem.app.musicplayer.mvp.contract.UserContract;
 import clem.app.musicplayer.mvp.model.UserModel;
+import clem.app.musicplayer.mvp.model.entity.User;
+import clem.app.musicplayer.mvp.ui.activity.UserAdapter;
 import clem.app.mvp.di.scope.ActivityScope;
 import dagger.Module;
 import dagger.Provides;
@@ -62,5 +68,17 @@ public class UserModule {
     @Provides
     RxPermissions provideRxPermissions() {
         return new RxPermissions(view.getActivity());
+    }
+
+    @ActivityScope
+    @Provides
+    List<User> provideUserList() {
+        return new ArrayList<>();
+    }
+
+    @ActivityScope
+    @Provides
+    UserAdapter provideUserAdapter(List<User> list){
+        return new UserAdapter(R.layout.recycle_list, list);
     }
 }

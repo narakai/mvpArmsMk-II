@@ -22,6 +22,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import clem.app.musicplayer.api.UserService;
 import clem.app.musicplayer.mvp.contract.UserContract;
 import clem.app.musicplayer.mvp.model.entity.User;
 import clem.app.mvp.di.scope.ActivityScope;
@@ -51,7 +52,7 @@ public class UserModel extends BaseModel implements UserContract.Model {
 
     @Override
     public Observable<List<User>> getUsers(int lastIdQueried, boolean update) {
-        return null;
+        return mRepositoryManager.obtainRetrofitService(UserService.class).getUsers(lastIdQueried, USERS_PER_PAGE);
         //使用rxcache缓存,上拉刷新则不读取缓存,加载更多读取缓存
 //        return Observable.just(mRepositoryManager
 //                .obtainRetrofitService(UserService.class)

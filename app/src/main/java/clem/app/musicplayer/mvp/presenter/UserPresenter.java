@@ -23,10 +23,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import clem.app.musicplayer.mvp.contract.UserContract;
+import clem.app.musicplayer.mvp.model.entity.User;
+import clem.app.musicplayer.mvp.ui.activity.UserAdapter;
 import clem.app.mvp.di.scope.ActivityScope;
 import clem.app.mvp.mvp.BasePresenter;
 import clem.app.mvp.utils.PermissionUtil;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 /**
  * ================================================
@@ -42,6 +47,10 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 public class UserPresenter extends BasePresenter<UserContract.Model, UserContract.View> {
     @Inject
     RxErrorHandler mErrorHandler;
+    @Inject
+    List<User> mUsers;
+    @Inject
+    UserAdapter mAdapter;
     private int lastUserId = 1;
     private boolean isFirst = true;
     private int preEndIndex;
@@ -84,6 +93,15 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     }
 
     private void requestFromModel(boolean pullToRefresh) {
-
+        mModel.getUsers(1, false)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ErrorHandleSubscriber<List<User>>(mErrorHandler) {
+                    @Override
+                    public void onNext(List<User> users) {
+                        mUsers.addAll(users);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 }
