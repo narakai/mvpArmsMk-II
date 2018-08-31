@@ -18,12 +18,16 @@ package clem.app.musicplayer.mvp.model;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import clem.app.musicplayer.mvp.contract.UserContract;
+import clem.app.musicplayer.mvp.model.entity.User;
 import clem.app.mvp.di.scope.ActivityScope;
 import clem.app.mvp.integration.IRepositoryManager;
 import clem.app.mvp.mvp.BaseModel;
+import io.reactivex.Observable;
 import timber.log.Timber;
 
 /**
@@ -45,9 +49,10 @@ public class UserModel extends BaseModel implements UserContract.Model {
         super(repositoryManager);
     }
 
-//    @Override
-//    public Observable<List<User>> getUsers(int lastIdQueried, boolean update) {
-//        //使用rxcache缓存,上拉刷新则不读取缓存,加载更多读取缓存
+    @Override
+    public Observable<List<User>> getUsers(int lastIdQueried, boolean update) {
+        return null;
+        //使用rxcache缓存,上拉刷新则不读取缓存,加载更多读取缓存
 //        return Observable.just(mRepositoryManager
 //                .obtainRetrofitService(UserService.class)
 //                .getUsers(lastIdQueried, USERS_PER_PAGE))
@@ -61,8 +66,8 @@ public class UserModel extends BaseModel implements UserContract.Model {
 //                                .map(listReply -> listReply.getData());
 //                    }
 //                });
-//
-//    }
+
+    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     void onPause() {

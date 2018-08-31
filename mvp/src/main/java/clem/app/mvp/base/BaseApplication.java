@@ -79,7 +79,8 @@ public abstract class BaseApplication extends MultiDexApplication implements App
 
     protected GlobalConfigModule getGlobalConfigModule() {
         return GlobalConfigModule.buidler()
-                .baseurl("www.igola.com")
+                //todo
+                .baseurl("https://api.github.com/")
                 .addInterceptor(new LoggingInterceptor.Builder()
                         .loggable(BuildConfig.DEBUG)
                         .setLevel(Level.BASIC)

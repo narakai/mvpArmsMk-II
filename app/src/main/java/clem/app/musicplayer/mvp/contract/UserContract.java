@@ -19,8 +19,12 @@ import android.app.Activity;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.util.List;
+
+import clem.app.musicplayer.mvp.model.entity.User;
 import clem.app.mvp.mvp.IModel;
 import clem.app.mvp.mvp.IView;
+import io.reactivex.Observable;
 
 
 /**
@@ -44,6 +48,6 @@ public interface UserContract {
     }
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,如是否使用缓存
     interface Model extends IModel {
-//        Observable<List<User>> getUsers(int lastIdQueried, boolean update);
+        Observable<List<User>> getUsers(int lastIdQueried, boolean update);
     }
 }

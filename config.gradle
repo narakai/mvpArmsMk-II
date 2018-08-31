@@ -65,6 +65,8 @@ ext {
             //对Recycle中Adapter的进行的抽离
             recycle_adapter          : '2.9.30',
             smart_refresh_layout     : "1.1.0-alpha-5",
+            paginate                 : "0.5.1",
+
             //Eventbus Android端优化的publish/subscribe消息总线, https://github.com/greenrobot/EventBus
             eventbus                 : '3.1.1',
 
@@ -175,6 +177,7 @@ ext {
             //对Recycle中Adapter的进行的抽离 https://github.com/CymChad/BaseRecyclerViewAdapterHelper/releases
             recycle_adapter            : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$versions.recycle_adapter",
             smart_refresh_layout       : "com.scwang.smartrefresh:SmartRefreshLayout:$versions.smart_refresh_layout",
+            paginate                   : "com.github.markomilos:paginate:$versions.paginate",
 
             //Eventbus Android端优化的publish/subscribe消息总线, https://github.com/greenrobot/EventBus
             eventbus                   : "org.greenrobot:eventbus:$versions.eventbus",
