@@ -1,4 +1,4 @@
-package clem.app.musicplayer.mvp.ui.activity;
+package clem.app.musicplayer.mvp.view.activity;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -18,6 +18,7 @@ import clem.app.musicplayer.di.component.DaggerUserComponent;
 import clem.app.musicplayer.di.module.UserModule;
 import clem.app.musicplayer.mvp.contract.UserContract;
 import clem.app.musicplayer.mvp.presenter.UserPresenter;
+import clem.app.musicplayer.mvp.view.adapter.UserAdapter;
 import clem.app.mvp.base.BaseActivity;
 import clem.app.mvp.base.BaseApplication;
 

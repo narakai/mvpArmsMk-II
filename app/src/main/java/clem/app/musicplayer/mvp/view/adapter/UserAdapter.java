@@ -1,4 +1,4 @@
-package clem.app.musicplayer.mvp.ui.activity;
+package clem.app.musicplayer.mvp.view.adapter;
 
 import android.support.annotation.Nullable;
 import android.widget.ImageView;

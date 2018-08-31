@@ -24,7 +24,7 @@ import javax.inject.Inject;
 
 import clem.app.musicplayer.mvp.contract.UserContract;
 import clem.app.musicplayer.mvp.model.entity.User;
-import clem.app.musicplayer.mvp.ui.activity.UserAdapter;
+import clem.app.musicplayer.mvp.view.adapter.UserAdapter;
 import clem.app.mvp.di.scope.ActivityScope;
 import clem.app.mvp.mvp.BasePresenter;
 import clem.app.mvp.utils.PermissionUtil;
