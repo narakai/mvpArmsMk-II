@@ -63,7 +63,7 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
             public void onLoadMoreRequested() {
                 presenter.requestUsers(false);
             }
-        });
+        }, mRecyclerView);
     }
 
     @Override
