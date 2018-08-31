@@ -88,8 +88,8 @@ ext {
             timber_version           : '4.7.0',
 
             //rxcache
-            rxCache_version          : '1.8.1-2.x',
-            rxCache_Jolyglot_version : '0.0.3',
+            rxCache_version          : '1.8.3-2.x',
+            rxCache_Jolyglot_version : '0.0.4',
 
     ]
 

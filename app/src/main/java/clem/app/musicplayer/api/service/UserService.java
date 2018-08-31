@@ -1,4 +1,4 @@
-package clem.app.musicplayer.api;
+package clem.app.musicplayer.api.service;
 
 import java.util.List;
 

@@ -17,6 +17,8 @@ package clem.app.mvp.di.module;
 
 import android.support.annotation.Nullable;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -58,12 +60,12 @@ public class ClientModule {
 
     @Singleton
     @Provides
-    Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client, HttpUrl httpUrl) {
+    Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client, HttpUrl httpUrl, Gson gson) {
         return builder
                 .baseUrl(httpUrl)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 
@@ -111,20 +113,6 @@ public class ClientModule {
     @Provides
     public Interceptor provideIntercept(RequestInterceptor interceptor) {
         return interceptor;
-    }
-
-    /**
-     * 需要单独给 {@link RxCache} 提供缓存路径
-     *
-     * @param cacheDir
-     * @return {@link File}
-     */
-    @Singleton
-    @Provides
-    @Named("RxCacheDirectory")
-    public File provideRxCacheDirectory(File cacheDir) {
-        File cacheDirectory = new File(cacheDir, "RxCache");
-        return DataHelper.makeDirs(cacheDirectory);
     }
 
     /**
