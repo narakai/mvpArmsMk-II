@@ -1,7 +1,9 @@
 package clem.app.musicplayer.mvp.ui.activity;
 
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -18,5 +20,7 @@ public class UserAdapter extends BaseQuickAdapter<User, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, User item) {
         helper.setText(R.id.tv_name, item.getAvatarUrl());
+        Glide.with(mContext).load(item.getAvatarUrl()).into((ImageView) helper.getView(R.id.iv_avatar));
+
     }
 }

@@ -93,13 +93,14 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     }
 
     private void requestFromModel(boolean pullToRefresh) {
-        mModel.getUsers(1, false)
+        mModel.getUsers(1, pullToRefresh)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .as(bindLifecycle())
                 .subscribe(new ErrorHandleSubscriber<List<User>>(mErrorHandler) {
                     @Override
                     public void onNext(List<User> users) {
+                        mRootView.hideLoading();
                         mUsers.addAll(users);
                         mAdapter.notifyDataSetChanged();
                     }
