@@ -66,7 +66,7 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     void onCreate() {
-        requestUsers(true);//打开 App 时自动加载列表
+        requestUsers(false);//打开 App 时自动加载缓存列表
     }
 
     public void requestUsers(final boolean pullToRefresh) {
