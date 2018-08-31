@@ -96,6 +96,7 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
         mModel.getUsers(1, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .as(bindLifecycle())
                 .subscribe(new ErrorHandleSubscriber<List<User>>(mErrorHandler) {
                     @Override
                     public void onNext(List<User> users) {
