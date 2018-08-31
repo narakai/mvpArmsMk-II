@@ -95,12 +95,19 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     private void requestFromModel(boolean pullToRefresh) {
         mModel.getUsers(1, pullToRefresh)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(disposable -> {
+                    if (pullToRefresh)
+                        mRootView.showLoading();//显示下拉刷新的进度条
+                })
                 .observeOn(AndroidSchedulers.mainThread())
+                .doFinally(() -> {
+                    if (pullToRefresh)
+                        mRootView.hideLoading();//隐藏下拉刷新的进度条
+                })
                 .as(bindLifecycle())
                 .subscribe(new ErrorHandleSubscriber<List<User>>(mErrorHandler) {
                     @Override
                     public void onNext(List<User> users) {
-                        mRootView.hideLoading();
                         mUsers.addAll(users);
                         mAdapter.notifyDataSetChanged();
                     }
