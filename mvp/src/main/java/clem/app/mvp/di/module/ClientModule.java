@@ -26,6 +26,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import clem.app.mvp.base.BaseApplication;
+import clem.app.mvp.http.ApiService;
 import clem.app.mvp.http.GlobalHttpHandler;
 import clem.app.mvp.http.ResponseErrorListenerImpl;
 import clem.app.mvp.http.log.RequestInterceptor;
@@ -55,6 +56,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class ClientModule {
     private static final int TIME_OUT = 10;
+
+    /**
+     * 网络访问，拆分到每个模块吧
+     *
+     * @return
+     */
+    @Provides
+    @Singleton
+    public ApiService provideApiService(Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
+    }
+
 
     @Singleton
     @Provides
