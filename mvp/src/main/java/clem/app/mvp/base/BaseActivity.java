@@ -17,11 +17,6 @@ import butterknife.Unbinder;
 import clem.app.mvp.mvp.IPresenter;
 import clem.app.mvp.utils.RxLifecycleUtils;
 
-/**
- * Created by QingMei on 2017/8/14.
- * desc:
- */
-
 public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity {
     private Unbinder mUnbinder;
 

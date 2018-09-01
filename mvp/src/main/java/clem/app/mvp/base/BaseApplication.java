@@ -22,12 +22,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.internal.platform.Platform;
 
-
-/**
- * Created by QingMei on 2017/8/14.
- * desc:
- */
-
 public abstract class BaseApplication extends MultiDexApplication implements App {
 
     private static BaseApplication instance;

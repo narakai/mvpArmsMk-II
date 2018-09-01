@@ -20,10 +20,6 @@ import butterknife.Unbinder;
 import clem.app.mvp.mvp.IPresenter;
 import clem.app.mvp.utils.RxLifecycleUtils;
 
-/**
- * Created by QingMei on 2017/8/14.
- */
-
 public abstract class BaseFragment<P extends IPresenter> extends Fragment implements IFragment {
 
     protected View rootView;

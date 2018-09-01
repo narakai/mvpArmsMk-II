@@ -6,9 +6,6 @@ import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
-/**
- * See the detail {@link AutoDispose}
- */
 public class RxLifecycleUtils {
 
     private RxLifecycleUtils() {

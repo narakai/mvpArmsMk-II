@@ -17,16 +17,6 @@ package clem.app.mvp.mvp;
 
 import clem.app.mvp.integration.IRepositoryManager;
 
-/**
- * ================================================
- * 基类 Model
- *
- * @see <a href="https://github.com/JessYanCoding/MVPArms/wiki#2.4.3">Model wiki 官方文档</a>
- * Created by JessYan on 08/05/2016 12:55
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
- */
 public class BaseModel implements IModel{
     protected IRepositoryManager mRepositoryManager;//用于管理网络请求层, 以及数据缓存层
 

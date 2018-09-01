@@ -19,22 +19,18 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import clem.app.mvp.base.BaseApplication;
 import clem.app.mvp.http.GlobalHttpHandler;
 import clem.app.mvp.http.ResponseErrorListenerImpl;
 import clem.app.mvp.http.log.RequestInterceptor;
-import clem.app.mvp.utils.DataHelper;
 import dagger.Module;
 import dagger.Provides;
-import io.rx_cache2.internal.RxCache;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
@@ -45,15 +41,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * ================================================
- * 提供一些三方库客户端实例的 {@link Module}
- * <p>
- * Created by JessYan on 2016/3/14.
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
- */
 @Module
 public class ClientModule {
     private static final int TIME_OUT = 10;

@@ -24,18 +24,6 @@ import io.rx_cache2.DynamicKey;
 import io.rx_cache2.EvictProvider;
 import io.rx_cache2.LifeCache;
 import io.rx_cache2.Reply;
-import io.rx_cache2.internal.RxCache;
-
-/**
- * ================================================
- * 展示 {@link RxCache#using(Class)} 中需要传入的 Providers 的使用方式
- * <p>
- * Created by JessYan on 08/30/2016 13:53
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
- */
-
 
 //@param user：这是个Observable类型的对象，简单来说，这就是你将要缓存的数据对象。
 //@param userName:DynamicKey类型，顾名思义，就是一个动态的key，我们以它作为tag，将数据存储到对应名字的File中

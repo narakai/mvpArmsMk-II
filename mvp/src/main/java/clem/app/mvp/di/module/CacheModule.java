@@ -1,24 +1,16 @@
 package clem.app.mvp.di.module;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import java.io.File;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
-import clem.app.mvp.utils.DataHelper;
 import dagger.Module;
 import dagger.Provides;
 import io.rx_cache2.internal.RxCache;
 import io.victoralbertos.jolyglot.GsonSpeaker;
 
-/**
- * Created by QingMei on 2017/9/1.
- * desc:
- */
 @Module
 public class CacheModule {
 

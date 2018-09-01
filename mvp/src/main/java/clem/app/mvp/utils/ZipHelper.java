@@ -28,15 +28,6 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.Inflater;
 
-/**
- * ================================================
- * 处理压缩和解压的工具类
- * <p>
- * Created by JessYan on 10/05/2016
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
- */
 public class ZipHelper {
 
 
@@ -130,7 +121,7 @@ public class ZipHelper {
 
             returnValues = new byte[bytesDecompressedSoFar.size()];
             for (int b = 0; b < returnValues.length; b++) {
-                returnValues[b] = (byte) (bytesDecompressedSoFar.get(b));
+                returnValues[b] = bytesDecompressedSoFar.get(b);
             }
 
         } catch (DataFormatException dfe) {
